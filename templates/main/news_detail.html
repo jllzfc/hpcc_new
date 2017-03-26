@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block header %}
+
+{% endblock %}
+{% block content %}
+
+<h2>标题{{ news.title }}&nbsp;&nbsp;<span style="font-size: 12px;">作者：{{ news.author }}</span></h2>
+    <div style="font-size: 10px;float: right;">{{ news.created_date }}</div>
+    <hr>
+    内容
+    <div>
+    {{ news.actical |safe}}
+
+    </div>
+
+
+
+
+
+{% endblock %}

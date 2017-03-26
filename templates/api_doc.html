@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block header %}
+
+    <style>
+        body {
+            padding: 10px;
+        }
+
+    </style>
+
+{% endblock %}
+{% block content %}
+
+    <table class="table table-striped table-bordered table-hover">
+        <caption>api文档</caption>
+        <thead>
+        <tr>
+            <th>api名称</th>
+            <th>说明</th>
+            <th>所需参数</th>
+            <th>是否需要登录</th>
+            <th>测试</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for api in apilist %}
+            <tr>
+                <td>{{ api.apiname }}</td>
+                <td>{{ api.des }}</td>
+                <td>{{ api.args }}</td>
+                <td>{{ api.login_need }}</td>
+                <td><a href="{{ api.test }}">测试</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

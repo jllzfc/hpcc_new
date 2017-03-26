@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block header %}
+
+    <style>
+        body {
+            padding: 10px;
+        }
+
+    </style>
+
+{% endblock %}
+{% block content %}
+
+    <h1>新闻列表</h1>
+
+    <ol>
+
+
+        {% for news in newss %}
+
+            <li>
+
+                <a href="/main/news_detail/{{ news.id }}">{{ news.title }}</a>
+
+                <img src="{{ news.picture.url }}" style="width: 60px;height: 60px;">
+
+            </li>
+
+
+        {% endfor %}
+
+
+    </ol>
+
+
+{% endblock %}

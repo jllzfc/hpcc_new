@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="row" style="margin-top: 20px;">
+
+        <div class="col-lg-offset-4  col-lg-4">
+            <div class="row">
+                <div class="col-xs-3" style="text-align: center">用户名</div>
+                <div class="col-xs-9"><input type="text" id="username" class="form-control"></div>
+            </div>
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-xs-3" style="text-align: center">密码</div>
+                <div class="col-xs-9"><input type="text" id="password" class="form-control"></div>
+            </div>
+            <div class="row" style="padding:10px;text-align: right;margin-right: 20px;">
+                <div class="btn btn-primary" id="login" style="">登录</div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        $('#login').click(function () {
+            $.post('/main/api/login',
+                {
+                    username: $('#username').val(),
+                    password: $('#password').val()
+                },
+                function (data) {
+                    if (data.code == 1) {
+                        window.location.href = '/madmin';
+                    }
+                    else
+                        alert('出问题啦！！！');
+                }
+            );
+        });
+
+    </script>
+
+{% endblock %}

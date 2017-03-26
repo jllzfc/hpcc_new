@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{{title}}</title>
+{% load staticfiles %}
+<script src="{% static 'js/jquery-1.10.2.js' %} "></script>
+<link href="{% static 'css/bootstrap.css' %} " rel="stylesheet" />
+<link href="{% static 'css/font-awesome.css' %} " rel="stylesheet" />
+<link href="{% static 'css/style.css' %} " rel="stylesheet" />
+<script src="{% static 'js/bootstrap.min.js' %} "></script>
+<script src="{% static 'js/jquery.metisMenu.js' %} "></script>
+{% block header %}{% endblock %}
+</head>
+<body>
+{% block content %}
+{% endblock %}
+</body>
+</html>

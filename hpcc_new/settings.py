@@ -117,4 +117,5 @@ STATICFILES_DIRS=(
                   ('fonts',os.path.join(STATIC_ROOT,'fonts')),
                   ('font-awesome',os.path.join(STATIC_ROOT,'font-awesome')),
                   ('admin',os.path.join(STATIC_ROOT,'admin')),
+                  ('ueditor',os.path.join(STATIC_ROOT,'ueditor')),
                   )

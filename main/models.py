@@ -1,3 +1,5 @@
+# -*- coding:utf-8 -*-
+
 from __future__ import unicode_literals
 
 from django.contrib.auth.models import User
@@ -13,11 +15,15 @@ class News(models.Model):
     created_date = models.DateTimeField(default=datetime.datetime.now)
     author = models.CharField(max_length=50, null=True)
     picture=models.ImageField()
-    actical=UEditorField()
+    actical=UEditorField('内容',height=100,width=500,toolbars=u'mini',blank=True)
+
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(News, self).save(*args, **kwargs)
+
+    def tojson(self):
+        return {'title':self.title,'created_date':self.created_date,'author':self.author,'picture':self.picture,'actical':self.actical}
 
     def __unicode__(self):
         return self.title

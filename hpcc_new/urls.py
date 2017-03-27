@@ -17,12 +17,13 @@ from django.conf.urls import include, url, patterns
 import os
 import settings
 from django.contrib import admin
-import main.urls
+import main.urls,madmin.urls
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^main/', include(main.urls)),
     url(r'^ueditor/', include('DjangoUeditor.urls')),
+    url(r'^madmin/',include(madmin.urls)),
 ]
 
 urlpatterns += patterns('',

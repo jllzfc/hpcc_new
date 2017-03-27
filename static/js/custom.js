@@ -32,6 +32,7 @@ SL = {};
 
 +function (SL, $) {
 
+
     SL.dialog = function () {
         var html = "<div class='dialog-me'>" +
             "<div class='title'>我是标题</div>" +
@@ -48,4 +49,62 @@ SL = {};
     SL.close_dialog = function () {
         $('.dialog-me').remove();
     }
+
+    SL.set_menu = function (menu_name) {
+        $.get('/main/api/set_menu_status?menu_name=' + menu_name, function (data) {
+            if (data.code == 1) {
+                var html_str = '';
+                for (var i = 0; i < data.data.length; i++) {
+                    html_str += '<li> <a class="' + data.data[i].class_ + '" href="' + data.data[i].href + '"><i class="fa fa-users"></i> ' + data.data[i].menu_name + '</a> </li>';
+                }
+                $('#main-menu').html(html_str);
+            }
+        })
+    }
+
+    SL.del_item = function (url) {
+        if (confirm('你确定要删除吗？')) {
+            $.get(url, function (data) {
+                if (data.code == 1)
+                    window.location.reload();
+                else
+                    alert('出错了。。。' + data.code);
+            });
+        }
+    }
+
+    SL.modal_update_item = function(url, args) {
+        $.post(url, args, function (data) {
+                if (data.code == 1) {
+                    window.location.reload();
+                }
+                else
+                    alert(data.msg);
+            }
+        );
+    }
+
+    SL.modal_add_item = function(url,args) {
+        $.post(url, args,
+            function (data) {
+                if (data.code == 1) {
+                    window.location.reload();
+                }
+                else
+                    alert(data.msg);
+            }
+        );
+    }
+
+    SL.upload_icon=function(imgid, formid) {
+        var option = {
+            url: '/madmin/api/upload',
+            success: function (data) {
+                $('#' + imgid)[0].src = data.url;
+            }
+        }
+        $('#' + formid).ajaxSubmit(option);
+    }
+
+
 }(SL, $);

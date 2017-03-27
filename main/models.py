@@ -14,7 +14,7 @@ class News(models.Model):
     title = models.CharField(max_length=250)
     created_date = models.DateTimeField(default=datetime.datetime.now)
     author = models.CharField(max_length=50, null=True)
-    picture=models.ImageField()
+    picture=models.CharField(max_length=1000)
     actical=UEditorField('内容',height=100,width=500,toolbars=u'mini',blank=True)
 
 
@@ -23,7 +23,7 @@ class News(models.Model):
         super(News, self).save(*args, **kwargs)
 
     def tojson(self):
-        return {'title':self.title,'created_date':self.created_date,'author':self.author,'picture':self.picture,'actical':self.actical}
+        return {'title':self.title,'created_date':str(self.created_date.time()),'author':self.author,'picture':self.picture,'actical':self.actical}
 
     def __unicode__(self):
         return self.title

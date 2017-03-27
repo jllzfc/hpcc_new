@@ -28,17 +28,21 @@
                                id="dataTables-example">
                             <thead>
                             <tr>
-                                <th>新闻</th>
+                                <th>新闻封面</th>
+                                <th>新闻标题</th>
+                                <th>作者</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for news in newss %}
                                 <tr class="odd gradeX" id="tr-{{ news.id }}">
+                                    <td><img src="{{ news.picture }}" style="width: 80px;height: 60px;"></td>
                                     <td>{{ news.title }}</td>
+                                    <td>{{ news.author }}</td>
                                     <td>&nbsp;
                                         <a href="javascript:load_edit_modal({{ news.id }})">编辑</a>&nbsp;
-                                        <a href="javascript:del({{ news.id }});">删除</a>
+                                        <a href="javascript:SL.del_item('/madmin/api/news_del?id='+{{ news.id }})">删除</a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -65,7 +69,7 @@
                     <div class="modal-body">
 
                         <div class="row">
-                            <div class="col-xs-2"><label>年级</label></div>
+                            <div class="col-xs-2"><label>新闻标题</label></div>
                             <div class="col-xs-10">
                                 <input type="text" id='modal_edit_grade_name' value="">
                             </div>
@@ -149,7 +153,8 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                         </button>
                         <button type="button" id="grade_add_btn" class="btn btn-primary"
-                                onclick="SL.modal_add_item('/mdmin/api/news_add',{'title':$('#modal_add_text_news_title').val()})">
+                                onclick="SL.modal_add_item('/madmin/api/news_add',{'title':$('#modal_add_text_news_title').val(),
+                                'author':$('#modal_add_text_news_author').val(),'picture':$('#modal_add_img_new_pic')[0].src,})">
                             添加
                         </button>
                     </div>

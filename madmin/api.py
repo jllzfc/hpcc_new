@@ -48,6 +48,15 @@ def get_all_news(request,**kwargs):
         news_list.append(news.tojson())
     return {'newss':news_list}
 
+def update_news(request,id,title,author,picture,artical):
+    news=News.objects.filter(id=id).first()
+    news.title=title
+    news.author=author
+    news.picture=picture
+    news.artical=artical
+    news.save()
+    return {'news':news}
+
 # from models import User
 # @asapi(args_list=['id'])
 # def user_delete(request,id,**kwargs):

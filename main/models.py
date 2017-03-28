@@ -15,7 +15,7 @@ class News(models.Model):
     created_date = models.DateTimeField(default=datetime.datetime.now)
     author = models.CharField(max_length=50, null=True)
     picture=models.CharField(max_length=1000)
-    actical=UEditorField('内容',height=100,width=500,toolbars=u'mini',blank=True)
+    actical=UEditorField()
 
 
     def save(self, *args, **kwargs):

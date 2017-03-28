@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 from main.models import User
 
-def gload_setting(request):
+def global_setting(request):
     session = request.session.get('user_id')
     if session:
         user=User.objects.filter(id=session).first()

@@ -143,6 +143,8 @@
                             <div class="col-xs-2"><label>文章</label></div>
                             <div class="col-xs-10">
 
+                                <script id="content" name="content"
+                                        style="display: inline-block;" type="text/plain"></script>
 
                             </div>
                         </div>
@@ -165,6 +167,15 @@
 
     <script>
 
+        var content = UE.getEditor('content', {
+            'initialFrameWidth': null,
+            'initialFrameHeight': 200,
+            'serverUrl': '/ueditor/controller/?imagePathFormat=images%2F&filePathFormat=files%2F'
+        });
+        content.ready(function () {
+
+        });
+
         function load_edit_modal(grade_id) {
             $.get('/main/api/get_grade?id=' + grade_id, function (data) {
                 if (data.code == 1) {
@@ -174,11 +185,13 @@
                     $('#grade_update_modal').modal('show');
                 }
             })
-        };
+        }
+        ;
 
         function load_add_modal() {
             $('#grade_add_modal').modal('show');
-        };
+        }
+        ;
     </script>
 
 {% endblock %}

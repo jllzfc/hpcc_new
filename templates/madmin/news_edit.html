@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <ol class="breadcrumb">
                 <li class=""><a href="/madmin/index">新闻管理</a></li>
-                <li class="active">添加新闻</li>
+                <li class="active">修改新闻</li>
             </ol>
         </div>
 
@@ -66,7 +66,7 @@
                         <div class="col-xs-10">
 
                             <button class="btn btn-primary form-control"
-                                    onclick="SL.page_add_item('/madmin/api/news_add',{ 'title':$('#m_a_text_news_title').val(),'author':$('#m_a_text_news_author').val(),'picture':$('#m_a_img_new_pic')[0].attributes[0].value,'actical':m_a_div_news_actical.getContent() },$('#modal_alert'))">
+                                    onclick="SL.page_add_item('/madmin/api/update_news',{ 'id':{{ news.id }},'title':$('#m_a_text_news_title').val(),'author':$('#m_a_text_news_author').val(),'picture':$('#m_a_img_new_pic')[0].attributes[0].value,'artical':m_a_div_news_actical.getContent() },$('#modal_alert'))">
                                 修改
                             </button>
 
@@ -77,9 +77,9 @@
             </div>
         </div>
 
-        <div class="modal fade" id="modal_alert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        <div class="modal" id="modal_alert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog" style="width: 200px;">
                 <div class="modal-content">
 
                     <div class="modal-body" style="text-align: center">

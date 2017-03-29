@@ -53,9 +53,9 @@ def update_news(request,id,title,author,picture,artical):
     news.title=title
     news.author=author
     news.picture=picture
-    news.artical=artical
+    news.actical=artical
     news.save()
-    return {'news':news}
+    return {'news':news.tojson()}
 
 # from models import User
 # @asapi(args_list=['id'])

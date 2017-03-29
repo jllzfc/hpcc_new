@@ -5,3 +5,9 @@
   margin-left: 10px;
   margin-right: 10px;
 }
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 900px;
+    margin: 30px auto;
+  }
+}

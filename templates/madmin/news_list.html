@@ -20,7 +20,7 @@
         <div class="col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    新闻表&nbsp;&nbsp;<a href="javascript:load_add_modal()">添加新闻</a>
+                    新闻表&nbsp;&nbsp;<a href="javascript:void(0);" onclick="load_add_modal()">添加新闻</a>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -41,8 +41,9 @@
                                     <td>{{ news.title }}</td>
                                     <td>{{ news.author }}</td>
                                     <td>&nbsp;
-                                        <a href="javascript:load_edit_modal({{ news.id }})">编辑</a>&nbsp;
-                                        <a href="javascript:SL.del_item('/madmin/api/news_del?id='+{{ news.id }})">删除</a>
+                                        <a href="javascript:void(0)" onclick="load_edit_modal({{ news.id }});">编辑</a>&nbsp;
+                                        <a href="javascript:void(0)"
+                                           onclick="SL.del_item('/madmin/api/news_del?id='+{{ news.id }})">删除</a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -139,12 +140,12 @@
                             </div>
                         </div>
 
+
                         <div class="row row-style">
                             <div class="col-xs-2"><label>文章</label></div>
                             <div class="col-xs-10">
 
-                                <script id="content" name="content"
-                                        style="display: inline-block;" type="text/plain"></script>
+                                    <div id="content"></div>
 
                             </div>
                         </div>
@@ -152,8 +153,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         <button type="button" id="grade_add_btn" class="btn btn-primary"
                                 onclick="SL.modal_add_item('/madmin/api/news_add',{'title':$('#modal_add_text_news_title').val(),
                                 'author':$('#modal_add_text_news_author').val(),'picture':$('#modal_add_img_new_pic')[0].src,})">
@@ -171,9 +171,6 @@
             'initialFrameWidth': null,
             'initialFrameHeight': 200,
             'serverUrl': '/ueditor/controller/?imagePathFormat=images%2F&filePathFormat=files%2F'
-        });
-        content.ready(function () {
-
         });
 
         function load_edit_modal(grade_id) {

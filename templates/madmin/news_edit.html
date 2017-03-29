@@ -1,0 +1,106 @@
+{% extends 'mAdmin/news_list.html' %}
+
+{% block news_body %}
+    <div class="row">
+
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li class=""><a href="/madmin/index">新闻管理</a></li>
+                <li class="active">添加新闻</li>
+            </ol>
+        </div>
+
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <div class="row row-style">
+                        <div class="col-xs-2"><label>新闻标题</label></div>
+                        <div class="col-xs-10">
+                            <input type="text" class="form-control" value="{{ news.title }}" id="m_a_text_news_title">
+                        </div>
+                    </div>
+
+                    <div class="row row-style">
+                        <div class="col-xs-2"><label>作者</label></div>
+                        <div class="col-xs-10">
+                            <input type="text" class="form-control" value="{{ news.author }}" id="m_a_text_news_author">
+                        </div>
+                    </div>
+
+                    <div class="row row-style">
+                        <div class="col-xs-2"><label>封面图片</label></div>
+                        <div class="col-xs-10">
+
+                            <div class="row">
+
+                                <div class="col-xs-4">
+                                    <img src="{{ news.picture }}" id="m_a_img_new_pic"
+                                         style="height: 60px;width: 60px;">
+                                </div>
+
+                                <div class="col-xs-8">
+
+                                    <form enctype="multipart/form-data" id="m_a_form_news_pic" method="POST">
+                                        {% csrf_token %}
+                                        <input type="file" name="file" style=""
+                                               onchange="SL.upload_icon('m_a_img_new_pic','m_a_form_news_pic');">
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-style">
+                        <div class="col-xs-2"><label>文章</label></div>
+                        <div class="col-xs-10">
+
+                            <div id="m_a_div_news_actical"></div>
+
+                        </div>
+                    </div>
+
+                    <div class="row row-style">
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-10">
+
+                            <button class="btn btn-primary form-control"
+                                    onclick="SL.page_add_item('/madmin/api/news_add',{ 'title':$('#m_a_text_news_title').val(),'author':$('#m_a_text_news_author').val(),'picture':$('#m_a_img_new_pic')[0].attributes[0].value,'actical':m_a_div_news_actical.getContent() },$('#modal_alert'))">
+                                修改
+                            </button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal_alert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-body" style="text-align: center">
+                        修改成功
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+
+
+        <script>
+
+            var m_a_div_news_actical = UE.getEditor('m_a_div_news_actical', {
+                'initialFrameWidth': null,
+                'initialFrameHeight': 200,
+                'serverUrl': '/ueditor/controller/?imagePathFormat=images%2F&filePathFormat=files%2F'
+            });
+            m_a_div_news_actical.ready(function () {
+                m_a_div_news_actical.setContent('{{news.actical|safe}}', false);
+            });
+
+        </script>
+
+{% endblock %}

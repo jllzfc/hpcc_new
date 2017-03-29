@@ -9,6 +9,7 @@
 
 {% block content-admin %}
 
+    {% block news_body %}
     <div class="row">
 
         <div class="col-md-12">
@@ -20,7 +21,7 @@
         <div class="col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    新闻表&nbsp;&nbsp;<a href="javascript:void(0);" onclick="load_add_modal()">添加新闻</a>
+                    新闻表&nbsp;&nbsp;<a href="/madmin/news_add">添加新闻</a>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -41,7 +42,7 @@
                                     <td>{{ news.title }}</td>
                                     <td>{{ news.author }}</td>
                                     <td>&nbsp;
-                                        <a href="javascript:void(0)" onclick="load_edit_modal({{ news.id }});">编辑</a>&nbsp;
+                                        <a href="/madmin/news_edit/{{ news.id }}">编辑</a>&nbsp;
                                         <a href="javascript:void(0)"
                                            onclick="SL.del_item('/madmin/api/news_del?id='+{{ news.id }})">删除</a>
                                     </td>
@@ -54,141 +55,6 @@
             </div>
         </div>
 
-        <!-- 模态框（Modal） -->
-        <div class="modal fade" id="grade_update_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            &times;
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            编辑
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-
-                        <div class="row">
-                            <div class="col-xs-2"><label>新闻标题</label></div>
-                            <div class="col-xs-10">
-                                <input type="text" id='modal_edit_grade_name' value="">
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                        </button>
-                        <button type="button" id="grade_update_btn" class="btn btn-primary"
-                                onclick="SL.modal_update_item('/main/api/grade_update',{'id':$('#grade_update_btn').attr('name'),'grade':$('#modal_edit_grade_name').val()})">
-                            修改
-                        </button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal -->
-        </div>
-
-        <div class="modal fade" id="grade_add_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            &times;
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            添加新闻
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-
-                        <div class="row row-style">
-                            <div class="col-xs-2"><label>新闻标题</label></div>
-                            <div class="col-xs-10">
-                                <input type="text" class="form-control" value="" id="modal_add_text_news_title">
-                            </div>
-                        </div>
-
-                        <div class="row row-style">
-                            <div class="col-xs-2"><label>作者</label></div>
-                            <div class="col-xs-10">
-                                <input type="text" class="form-control" value="" id="modal_add_text_news_author">
-                            </div>
-                        </div>
-
-                        <div class="row row-style">
-                            <div class="col-xs-2"><label>封面图片</label></div>
-                            <div class="col-xs-10">
-
-                                <div class="row">
-
-                                    <div class="col-xs-4">
-                                        <img src="" id="modal_add_img_new_pic" style="height: 60px;width: 60px;">
-                                    </div>
-
-                                    <div class="col-xs-8">
-
-                                        <form enctype="multipart/form-data" id="modal_add_form_news_pic" method="POST">
-                                            {% csrf_token %}
-                                            <input type="file" name="file" style=""
-                                                   onchange="SL.upload_icon('modal_add_img_new_pic','modal_add_form_news_pic');">
-                                        </form>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="row row-style">
-                            <div class="col-xs-2"><label>文章</label></div>
-                            <div class="col-xs-10">
-
-                                    <div id="content"></div>
-
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" id="grade_add_btn" class="btn btn-primary"
-                                onclick="SL.modal_add_item('/madmin/api/news_add',{'title':$('#modal_add_text_news_title').val(),
-                                'author':$('#modal_add_text_news_author').val(),'picture':$('#modal_add_img_new_pic')[0].src,})">
-                            添加
-                        </button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal -->
-        </div>
-    </div>
-
-    <script>
-
-        var content = UE.getEditor('content', {
-            'initialFrameWidth': null,
-            'initialFrameHeight': 200,
-            'serverUrl': '/ueditor/controller/?imagePathFormat=images%2F&filePathFormat=files%2F'
-        });
-
-        function load_edit_modal(grade_id) {
-            $.get('/main/api/get_grade?id=' + grade_id, function (data) {
-                if (data.code == 1) {
-                    var grade = data.grade;
-                    $("#modal_edit_grade_name").val(grade.grade);
-                    $("#grade_update_btn").attr("name", grade_id);
-                    $('#grade_update_modal').modal('show');
-                }
-            })
-        }
-        ;
-
-        function load_add_modal() {
-            $('#grade_add_modal').modal('show');
-        }
-        ;
-    </script>
+        {% endblock %}
 
 {% endblock %}

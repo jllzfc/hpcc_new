@@ -24,3 +24,10 @@ def index(request):
     # else:
     #     return HttpResponseRedirect('/madmin/login')
 
+def news_add(request):
+    return render(request,'madmin/news_add.html',{'title':u'添加新闻'})
+
+def news_edit(request,id):
+    news=News.objects.filter(id=id).first()
+    return render(request,'madmin/news_edit.html',{'title':u'编辑新闻','news':news})
+

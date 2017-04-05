@@ -1,36 +1,35 @@
 {% extends 'base.html' %}
 {% block header %}
-
-    <style>
-        body {
-            padding: 10px;
-        }
-
-    </style>
-
+<title>新闻列表</title>
+    <link rel="stylesheet" href="/static/css/style_news.css">
+    <link rel="stylesheet" href="/static/css/new-lists.css">
 {% endblock %}
 {% block content %}
 
-    <h1>新闻列表</h1>
-
-    <ol>
-
-
+    <div class="col-xs-10">
         {% for news in newss %}
+            <div class="row">
+            <h2 id="section-4">{{news.created_date|date:'F Y'}}</h2>
+                    <hr>
+                    <div class="clearfix news-list">
+                        <div class="news-date">
+                            <div class="events-date-2">
+                             <span class="date-month-2">{{news.created_date|date:'F'}}</span>
+                                <hr/>
+                                <span class="date-day-2">{{news.created_date|date:'d'}}</span>
+                            </div>
+                            <div class="news-img">
+                                <img src="{{ news.picture }}" style="width: 135px;height: 70px;">
+                            </div>
+                            <div class="news-detail">
+                                <a class="details-link" href="/main/news_detail/{{ news.id }}">{{ news.title }}</a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+    {%endfor%}
+    </div>
 
-            <li>
-
-                <a href="/main/news_detail/{{ news.id }}">{{ news.title }}</a>
-
-                <img src="{{ news.picture.url }}" style="width: 60px;height: 60px;">
-
-            </li>
-
-
-        {% endfor %}
-
-
-    </ol>
 
 
 {% endblock %}

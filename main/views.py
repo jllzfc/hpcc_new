@@ -13,3 +13,4 @@ def news_list(request):
 def news_detail(request,id):
     news=News.objects.get(id=id)
     return render(request,'main/news_detail.html',{'title':news.title,'news':news})
+

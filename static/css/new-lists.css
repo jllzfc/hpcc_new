@@ -1,0 +1,109 @@
+.submenu {
+    height: 40px;
+    background: #f6f6f6;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+ul.nav-tabs.affix{
+    top: -15px; /* Set the top position of pinned element */
+}
+ul.nav-tabs{
+    width: 150px;
+    margin-top: 20px;
+    background: #8c1515;
+    padding: 5px 0px 5px 0px;
+}
+ul.nav-tabs>li{
+    font-family: "宋体";
+    text-align: center;
+    font-size: 12px;
+    background: #e6e6e6;
+    display: block;
+    position: relative;
+    margin-top: 0px;
+}
+#myScrollspy a{
+    padding: 0px 0px;
+}
+#section {
+    margin-bottom: 25px;
+}
+#section hr{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-top: 1px solid #636363;
+}
+ul.nav-tabs>li>a:hover{
+    background: #8c1515;
+    color: white;
+}
+.header{
+    text-align: left !important;
+    font-family: "微软雅黑" !important;
+}
+.news-detail{
+    font-family: "微软雅黑";
+    color: #000;
+    font-size: 14px;
+    margin-left: 10px;
+    line-height: 1.4;
+    text-decoration: none;
+}
+.news-date {
+   float: left;
+   margin-right: 20px; 
+}
+.events-date-2 {
+    width: 70px;
+    padding-left: 12px;
+    padding-right: 10px;
+    float: left;
+    height: 70px;
+    background: #e6e6e6;
+    text-align: center;
+}
+.news-img{
+    float: left;
+    width: 135px;
+    height: 70px;
+}
+.news-img img {
+    width: 100%;
+    height: 100%;
+}
+.date-month-2 {
+    font-size: 16px;
+    line-height: 1.8;
+}
+.date-day-2 {
+    font-size: 30px;
+}
+.news-detail {
+    color: #000;
+    font-size: 14px;
+    margin-left: 10px;
+    line-height: 1.4;
+    text-decoration: none;
+}
+.details-link {
+    display: block;
+    font-size: 18px;
+    max-height: 45px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.news-list{
+    margin-top: 20px;
+}
+#myScrollspy{
+    margin-top: 42px;
+}
+.category{
+    background: url("../images/left_menu/left_menu_block_OFF.png") no-repeat;
+    background-position: 12px 12px;
+}
+hr {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-top: 2px solid #0000FF;
+}

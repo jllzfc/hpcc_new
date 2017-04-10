@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'main',
     'madmin',
     'DjangoUeditor',
+    'pagination',
 
 )
 
@@ -52,6 +53,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+'pagination.middleware.PaginationMiddleware',
 )
 
 ROOT_URLCONF = 'hpcc_new.urls'

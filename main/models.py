@@ -33,6 +33,10 @@ class News(models.Model):
         ordering = ['-created_date', 'title']
 
 
+    def get_month(self):
+        return self.created_date.month
+
+
 class UserProfile(models.Model):
 
     user = models.OneToOneField(User)

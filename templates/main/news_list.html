@@ -6,7 +6,11 @@
 {% endblock %}
 {% block content %}
 
+
+
+
     <div class="col-xs-10">
+         {% load pagination_tags %} {% autopaginate newss 3 %}
         {% for news in newss %}
             <div class="row">
             <h2 id="section-4">{{news.created_date|date:'F Y'}}</h2>
@@ -28,6 +32,7 @@
                     </div>
             </div>
     {%endfor%}
+    {% paginate %}
     </div>
 
 

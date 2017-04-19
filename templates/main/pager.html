@@ -1,0 +1,17 @@
+{% load irfilters %}
+{% if pager and pager.needpager %}
+	<div class="pager">
+	<p style="text-align:center; padding:0; margin:6px; display:inline-block;">{{pager.count}}条记录</p>
+		{% if pager.prev %}
+		<a href="{{view.request|pageurl:pager.prevpage}}" class="prevpage enable" style="border:2px solid #eee; padding:2px 6px;">上一页</a>
+		{% else %}
+		<a class="prevpage disable" style="border:2px solid #eee; padding:2px 6px; cursor:pointer;">上一页</a>
+		{% endif %}
+		<span>{{pager.page}}/{{pager.lastpage}}</span>
+		{% if pager.next %}
+		<a href="{{view.request|pageurl:pager.nextpage}}" class="prevpage enable" style="border:2px solid #eee; padding:2px 6px;">下一页</a>
+		{% else %}
+		<a class="prevpage disable" style="border:2px solid #eee; padding:2px 6px; cursor:pointer;    margin-right: 5px;">下一页</a>
+		{% endif %}
+	</div>
+{% endif %}

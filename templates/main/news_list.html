@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load irfilters %}
 {% block header %}
     <title>新闻列表</title>
     <link rel="stylesheet" href="/static/css/style_news.css">
@@ -7,33 +8,31 @@
 {% block content %}
 
     <div class="col-xs-10">
-        {% load pagination_tags %} {% autopaginate newss 10 %}
-        {% for news in newss %}
-            <div class="row">
-            {% if news.get_class_flag %}
-                <h2 id="section-4">{{ news.created_date|date:'F Y' }}</h2>
+    {% for l in grouplist %}
+        <div class="row" id="row{{ l.key }}">
+                <h2 id="section-4">{{ l.created_date|date:'F Y' }}</h2>
                 <hr>
-            {% endif %}
-
+            {% for n in l.list %}
                 <div class="clearfix news-list">
                     <div class="news-date">
                         <div class="events-date-2">
-                            <span class="date-month-2">{{ news.created_date|date:'F' }}</span>
+                            <span class="date-month-2">{{ n.published|date:'F' }}</span>
                             <hr/>
-                            <span class="date-day-2">{{ news.created_date|date:'d' }}</span>
+                            <span class="date-day-2">{{ n.published|date:'d' }}</span>
                         </div>
+                    </div>
                         <div class="news-img">
-                            <img src="{{ news.picture }}" style="width: 135px;height: 70px;">
+                            <img src="{{ n.picture }}" style="width: 135px;height: 70px;">
                         </div>
                         <div class="news-detail">
                             <a class="details-link" href="/main/news_detail/{{ news.id }}"
                                target="_blank">{{ news.title }}</a>
                         </div>
-                    </div>
                 </div>
-            </div>
+            {% endfor %}
+        </div>
         {% endfor %}
-        {% paginate %}
+    {%include 'main/pager.html'%}
     </div>
 
 

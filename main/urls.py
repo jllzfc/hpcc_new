@@ -8,6 +8,8 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.http.response import HttpResponse, HttpResponseRedirect
 
+from main import views
+
 urlpatterns = patterns('',
                        # url(r'^login$',main.views.login),
                        url(r'^(?P<viewname_with_id>\S+)/(?P<id>\d+)$', 'main.urls.request_handle_view_id'),

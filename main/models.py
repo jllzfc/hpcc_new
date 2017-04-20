@@ -45,9 +45,4 @@ class News(models.Model):
             return True
 
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User)
-    picture = models.ImageField(upload_to='profile_image', blank=True)
 
-    def __unicode__(self):
-        return self.user.username

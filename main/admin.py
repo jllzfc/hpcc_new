@@ -5,5 +5,5 @@ from django.contrib import admin
 from models import News
 admin.site.register(News)
 
-from models import UserProfile
+from UserTab.models import UserProfile
 admin.site.register(UserProfile)

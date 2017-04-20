@@ -18,12 +18,14 @@ import os
 import settings
 from django.contrib import admin
 import main.urls,madmin.urls
+from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^main/', include(main.urls)),
     url(r'^ueditor/', include('DjangoUeditor.urls')),
     url(r'^madmin/',include(madmin.urls)),
+    url(r'^login',TemplateView.as_view(template_name='madmin/login.html')),
 ]
 
 urlpatterns += patterns('',

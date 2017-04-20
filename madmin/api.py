@@ -3,8 +3,11 @@
 import sys
 from functools import wraps
 import hashlib
+from django.contrib.auth import authenticate,login
 
 import os
+
+from django.shortcuts import render
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -84,10 +87,14 @@ def update_news(request,id,title,author,picture,artical):
 #     return {'code':1}
 #
 # @asapi(args_list=['username','password'])
-# def login(request,**kwargs):
-#     user=User.objects.filter(**kwargs).first()
-#     request.session['user_id']=user.id
-#     return {'user':user.tojson()}
+def userlogin(request,**kwargs):
+    user_name = request.POST.get("username","")
+    pass_word = request.POST.get("password","")
+    user = authenticate(username = user_name,password = pass_word)
+    if user is not None:
+        login(request,user)
+
+    return render(request,'/madmin')
 
 # @asapi()
 # def get_all_user(request,**kwargs):

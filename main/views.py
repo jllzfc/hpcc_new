@@ -6,7 +6,7 @@ from django.shortcuts import render
 from main.utils import gen_pager
 from models import News
 
-def news_list(self,request):
+def news_list(request):
     from main.templatetags import irfilters
     kw = request.GET.get('kw', '')
     query = News.objects.filter()
@@ -15,8 +15,8 @@ def news_list(self,request):
     pager = gen_pager(query, param=request.GET, size=12)
     items = [x for x in pager['items']]
     pager['items'] = items
-    grouplist = irfilters.groupbydate(items, 'published')
-    return self.render_to_response(request, 'main/news_list.html',
+    grouplist = irfilters.groupbydate(items, 'created_date')
+    return render(request, 'main/news_list.html',
                                     {'newslist': items, 'grouplist': grouplist, 'pager': pager, 'kw': kw})
 
 def news_detail(request,id):

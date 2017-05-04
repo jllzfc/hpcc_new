@@ -10,15 +10,15 @@
     <div class="col-xs-10">
     {% for l in grouplist %}
         <div class="row" id="row{{ l.key }}">
-                <h2 id="section-4">{{ l.created_date|date:'F Y' }}</h2>
+                <h2 id="section-4">{{ l.date|date:'F Y' }}</h2>
                 <hr>
             {% for n in l.list %}
                 <div class="clearfix news-list">
                     <div class="news-date">
                         <div class="events-date-2">
-                            <span class="date-month-2">{{ n.published|date:'F' }}</span>
+                            <span class="date-month-2">{{ n.created_date|date:'F' }}</span>
                             <hr/>
-                            <span class="date-day-2">{{ n.published|date:'d' }}</span>
+                            <span class="date-day-2">{{ n.created_date|date:'d' }}</span>
                         </div>
                     </div>
                         <div class="news-img">

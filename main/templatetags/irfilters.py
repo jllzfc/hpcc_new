@@ -10,7 +10,7 @@ def groupbydate(ls,field,fmt='%Y%m'):
             dt = getattr(r, field)
             if not dt:
                 raise Exception('%s.%s=%s' % (r, field, dt))
-            key = dt.strFtime(fmt)
+            key = dt.strftime(fmt)
             if key not in arrd:
                 arrd[key] = {
                     'list':[],
@@ -23,3 +23,16 @@ def groupbydate(ls,field,fmt='%Y%m'):
         else:
             raise Exception('%s has no field %s' % (r, field))
     return arr
+
+@register.filter
+def pageurl(request, page):
+    import re
+    curpath = request.get_full_path()
+    dr = re.compile(r'page=[0-9]*', re.S)
+    dd = dr.sub('', curpath)
+    if '?' not in dd:
+        dd = dd + '?'
+    if not dd.endswith('&') and not dd.endswith('?'):
+        dd = dd + '&'
+    dd = dd + 'page=%s' % page
+    return dd

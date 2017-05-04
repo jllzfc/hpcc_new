@@ -13,7 +13,7 @@ from main import views
 urlpatterns = patterns('',
                        # url(r'^login$',main.views.login),
                        url(r'^(?P<viewname_with_id>\S+)/(?P<id>\d+)$', 'main.urls.request_handle_view_id'),
-                       url(r'^(?P<viewname>\S+)$', 'main.urls.request_handle_view'),
+                       url(r'^(?P<viewname>\S+)\/$', 'main.urls.request_handle_view'),
                        # url(r'', main.views.index),
                        )
 @csrf_exempt

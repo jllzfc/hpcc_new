@@ -25,8 +25,9 @@
                             <img src="{{ n.picture }}" style="width: 135px;height: 70px;">
                         </div>
                         <div class="news-detail">
-                            <a class="details-link" href="/main/news_detail/{{ news.id }}"
-                               target="_blank">{{ news.title }}</a>
+                            <a class="details-link" href="/main/news_detail/{{ n.id }}"
+                               target="_blank">{{ n.title }}</a>
+                            <p>{{ n.detail |slice:'100' }}</p>
                         </div>
                 </div>
             {% endfor %}
